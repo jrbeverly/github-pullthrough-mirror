@@ -1,0 +1,10 @@
+70fc035fb2af2d5a4695ae98cef52d62  checksums.txt
+b5075066e23a1919de9388d06703f2e1  checksums.txt.sig
+e9b988a05c53e18b8545dc9fb5245b50  tflint_darwin_amd64.zip
+39bfefb0c143c88f632e27d2615bc771  tflint_darwin_arm64.zip
+06b4bbfd8212262f775dca436f1591de  tflint_linux_386.zip
+05b895d7e98ac44fbf39d8ba66b8c052  tflint_linux_amd64.zip
+8cda809f68ca2e899434bed5cce964ea  tflint_linux_arm.zip
+f9261372ba3c009fe23643ead58f195a  tflint_linux_arm64.zip
+23f968c7383e8fbac89ba8f6329f4003  tflint_windows_386.zip
+5c1182ae52536deaf6fa256edbf01fe4  tflint_windows_amd64.zip
