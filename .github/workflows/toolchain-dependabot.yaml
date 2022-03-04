@@ -1,0 +1,37 @@
+name: Search for new versions
+on:
+  schedule:
+    - cron: "30 4 2 * *"
+  workflow_dispatch:
+
+jobs:
+  search-for-versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Synchronize
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash cmd/github.com/sync.sh
+      - name: Publish to Target
+        run: |
+          echo 'Command like aws s3 publish'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Repository remote
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+      - name: Commit to Repository
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git add -f packages/ || true
+          git commit -m "sync(github): Synchronize checksums"
+          if [ $? -eq 0 ]; then
+            git push github HEAD:${GITHUB_REF}
+          fi
